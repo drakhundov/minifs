@@ -15,6 +15,9 @@
 // Supposed to be inaccessible
 // anywhere else.
 static int logfd;
+static bool print_logs = true;  // Print logs to the stdout by default.
+
+void set_print_logs(bool toggle) { print_logs = toggle; }
 
 void init_logs(const char *filename, int mode) {
   logfd = open(filename, mode, LOGPERMS);
@@ -38,9 +41,8 @@ char *_get_timestamp() {
     perror("Failed to allocate memory for timestamp.");
     exit(1);
   }
-  sprintf(timestamp, "%02d-%02d-%04d %02d:%02d:%02d", local->tm_mday,
-          local->tm_mon + 1, local->tm_year + 1900, local->tm_hour,
-          local->tm_min, local->tm_sec);
+  sprintf(timestamp, "%02d-%02d-%04d %02d:%02d:%02d", local->tm_mday, local->tm_mon + 1,
+          local->tm_year + 1900, local->tm_hour, local->tm_min, local->tm_sec);
   return timestamp;
 }
 
@@ -59,5 +61,8 @@ void logMsg(Logtype log_type, const char *fmt, ...) {
   char msg[1024];
   sprintf(msg, "[%s] [%s] %s\n", _get_timestamp(), type_msg, tmp);
   write(logfd, msg, strlen(msg));
+  if (print_logs) {
+    puts(msg);
+  }
   fsync(logfd);  // Ensure the log message is written to disk.
 }
