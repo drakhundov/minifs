@@ -10,6 +10,11 @@
 
 const int MAX_INODE_DATA_BLOCKS = 4;
 
+/* Stores metadata for file entries,
+ * except doesn't store names. All Inodes
+ * are stored consecutively, starting at
+ * the same memory address.
+ */
 typedef struct
 {
     uint8_t f;    // InodeFlags.
