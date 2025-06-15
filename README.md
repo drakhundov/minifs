@@ -29,3 +29,19 @@ Used to store the file system structure and connect inodes to names.
 
 - **Inode**
 - **Name**
+
+## Usage
+
+**Must have *clang* and *make* installed on your system.**
+
+If not, run
+
+```bash
+brew install llvm make
+```
+
+To run **MiniFS**:
+
+```bash
+make && make run
+```
