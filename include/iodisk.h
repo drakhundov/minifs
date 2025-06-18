@@ -30,7 +30,12 @@ void load_superblock();
 void write_superblock();
 
 //* --Bitmap & Data Blocks
+//! Like SuperBlock, bitmap is a globally
+//! defined array. It is read once during
+//! mount, and could be written back to memory.
+void load_bitmap();
 void clear_bitmap(); // Sets all bits to zero.
+void write_bitmap();
 int alloc_block();
 void free_block(int block_no);
 void set_bmp(int block_no, char flag);  // 0 - free.
