@@ -21,6 +21,8 @@ void free_inode(int inode_no);
 bool is_directory(Inode inode);
 
 //* --DirectoryEntry
+//* Add a DirectoryEntry for a newly created
+//* Inode (to the parent directory's data block.)
 void add_dirent(int parent_inode_no, DirectoryEntry dirent);
 
 //* --SuperBlock
