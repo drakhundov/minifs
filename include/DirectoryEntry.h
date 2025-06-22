@@ -1,7 +1,7 @@
 #ifndef DIRENT_H
 #define DIRENT_H
 
-const int MAX_NAME_LEN = 27;
+#define MAX_NAME_LEN 27
 
 /*
  * Used to represent the directory structure

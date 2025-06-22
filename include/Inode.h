@@ -8,7 +8,7 @@
 #define IS_VALID_FLAG 0x01  // 0b00000001
 #define IS_DIR_FLAG 0x02    // 0b00000010
 
-const int MAX_INODE_DATA_BLOCKS = 4;
+#define MAX_INODE_DATA_BLOCKS 4
 
 /* Stores metadata for file entries,
  * except doesn't store names. All Inodes
