@@ -18,7 +18,6 @@ void write_inode(int inode_no, Inode inode);
 void init_inode_table();
 int alloc_inode();
 void free_inode(int inode_no);
-bool is_directory(Inode inode);
 
 //* --DirectoryEntry
 /*
