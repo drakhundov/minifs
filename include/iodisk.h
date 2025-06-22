@@ -47,7 +47,4 @@ void read_data_block(int block_no, void* buf, size_t size);
 void write_data_block(int block_no, void* data, size_t size);
 bool block_is_free(int block_no);
 
-//* --Path
-int resolve_path(const char* path, int* inode_num);
-
 #endif
