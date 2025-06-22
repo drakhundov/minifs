@@ -20,13 +20,13 @@ int path_to_inode(const char* path, int* inode_no) {
   int cur_inode_no = 0;  // Start from root.
   Inode cur_inode;
   read_inode(cur_inode_no, &cur_inode);
-  DirectoryEntry dirents[32];
+  DirectoryEntry dirents[DIRENTS_PER_BLOCK];
   while (token != NULL) {
     bool found = false;
     for (int i = 0; i < cur_inode.size; ++i) {
-      int entry_index = i % 32;
-      if (i % 32 == 0) {
-        int block_index = i / 32;
+      int entry_index = i % DIRENTS_PER_BLOCK;
+      if (i % DIRENTS_PER_BLOCK == 0) {
+        int block_index = i / DIRENTS_PER_BLOCK;
         read_data_block(cur_inode.data_blocks[block_index], dirents, sizeof(dirents));
       }
       if (strcmp(dirents[entry_index].name, token) == 0) {
