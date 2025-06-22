@@ -2,6 +2,7 @@
 #define DIRENT_H
 
 #define MAX_NAME_LEN 27
+#define DIRENTS_PER_BLOCK (BLOCK_SIZE / sizeof(DirectoryEntry))
 
 /*
  * Used to represent the directory structure
