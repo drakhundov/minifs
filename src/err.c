@@ -13,5 +13,6 @@ void err_exit(const char* err_msg, ...) {
 	va_end(args);
 	perror(tmp);
 	logMsg(ERROR_LOG, tmp);
+	logMsg(INFO_LOG, "Exiting.");
 	exit(1);
 }
