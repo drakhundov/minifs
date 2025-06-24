@@ -1,5 +1,5 @@
-#ifndef IODISK
-#define IODISK
+#ifndef IODISK_H
+#define IODISK_H
 
 /*
  * This module is used by fs to
@@ -39,11 +39,14 @@ void write_superblock();
 void load_bitmap();
 void clear_bitmap();  // Sets all bits to zero.
 void write_bitmap();
+void set_bmp(int block_no, char flag);  // 0 - free.
+
 int alloc_block();
 void free_block(int block_no);
-void set_bmp(int block_no, char flag);  // 0 - free.
+
 void read_data_block(int block_no, void* buf, size_t size);
 void write_data_block(int block_no, void* data, size_t size);
+
 bool block_is_free(int block_no);
 
 #endif
