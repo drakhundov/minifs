@@ -46,7 +46,11 @@ void free_block(int block_no);
 
 void read_data_block(int block_no, void* buf, size_t size);
 void write_data_block(int block_no, void* data, size_t size);
+void write_blocks(Inode inode, void* data, size_t size);
 
 bool block_is_free(int block_no);
+
+// Wrap function for system call.
+void diskseek(FILE *f, long pos, int start);
 
 #endif

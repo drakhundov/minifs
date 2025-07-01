@@ -24,10 +24,10 @@ typedef struct {
   uint16_t owner_id;
 } Inode;
 
-inline bool inode_is_valid(Inode inode) { return inode.f & IS_VALID_FLAG; }
-inline bool inode_is_dir(Inode inode) { return inode.f & IS_DIR_FLAG; }
-inline void inode_set_valid(Inode *inode) { inode->f |= IS_VALID_FLAG; }
-inline void inode_set_invalid(Inode *inode) { inode->f &= ~IS_VALID_FLAG; }
-inline void inode_set_dir(Inode *inode) { inode->f |= IS_DIR_FLAG; }
+static inline bool inode_is_valid(Inode inode) { return inode.f & IS_VALID_FLAG; }
+static inline bool inode_is_dir(Inode inode) { return inode.f & IS_DIR_FLAG; }
+static inline void inode_set_valid(Inode *inode) { inode->f |= IS_VALID_FLAG; }
+static inline void inode_set_invalid(Inode *inode) { inode->f &= ~IS_VALID_FLAG; }
+static inline void inode_set_dir(Inode *inode) { inode->f |= IS_DIR_FLAG; }
 
 #endif
