@@ -1,0 +1,6 @@
+.vscode/
+.log
+.clang-format
+.editorconfig
+build/
+*.DS_Store
