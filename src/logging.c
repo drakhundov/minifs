@@ -55,7 +55,7 @@ void logMsg(Logtype log_type, const char *fmt, ...) {
   va_list args;
   va_start(args, fmt);
   char tmp[1024];
-  char *type_msg = (log_type == ERROR_LOG) ? "ERROR" : "INFO";
+  char *type_msg = (log_type == ERROR_LOG) ? "ERROR" : (log_type == WARN_LOG) ? "WARN" : "INFO";
   vsnprintf(tmp, sizeof(tmp), fmt, args);
   va_end(args);
   char msg[1024];
