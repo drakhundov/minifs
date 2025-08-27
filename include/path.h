@@ -1,9 +1,7 @@
-#ifndef PATH_H
-#define PATH_H
+#pragma once
 
 // Sets `inode_num` to the last inode in the path.
 // Returns 0 on success, -1 on failure.
-int path_to_inode(const char* path, int* inode_num);
-char *get_parent_path(const char* full_path);
+int get_inode_no_from_path(const char* path, int* inode_num);
 
-#endif
+char* get_parent_path(const char* full_path);
