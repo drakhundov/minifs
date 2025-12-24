@@ -2,10 +2,10 @@
 
 #include <stddef.h>
 
+#include "allocator.h"
 #include "fs.h"
 #include "inode.h"
 #include "logging.h"
-#include "allocator.h"
 
 /*
  * Adds a DirectoryEntry for inode to a given parent inode.

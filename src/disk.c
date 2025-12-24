@@ -92,10 +92,10 @@ int mount_fs(const char* disk_img_fn) {
 
 void unmount_fs() {
     if (!disk.is_mounted) {
-        load_super_from_disk_from_disk("unmount_fs: disk is not mounted");
+        err_exit("unmount_fs: disk is not mounted");
     }
     if (disk.fp == NULL) {
-        load_super_from_disk_from_disk("unmount_fs: disk file pointer is NULL");
+        err_exit("unmount_fs: disk file pointer is NULL");
     }
     logMsg(INFO_LOG, "unmount_fs: unmounting disk %s", disk_img_fn());
     free_disk();
@@ -131,7 +131,7 @@ bool disk_is_mounted() {
 
 void require_disk_is_mounted() {
     if (!disk.is_mounted || disk.fp == NULL) {
-        load_super_from_disk_from_disk("require_disk_is_mounted: disk hasn't been mounted yet");
+        err_exit("require_disk_is_mounted: disk hasn't been mounted yet");
     }
 }
 
@@ -168,7 +168,7 @@ int diskseek(off_t offset, int whence) {
         case SEEK_CUR:
             base = ftello(disk.fp);
             if (base < 0) {
-                load_super_from_disk_from_disk("diskseek: `ftello` failed");
+                err_exit("diskseek: `ftello` failed");
             }
             strcpy(whence_macro_name, "SEEK_CUR");
             break;

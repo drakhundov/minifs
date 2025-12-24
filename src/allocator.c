@@ -50,7 +50,7 @@ static void set_block_state(int block_no, BlockState flag) {
 
 void require_bitmap_is_loaded() {
     if (bmp.arr == NULL || !bmp.is_loaded) {
-        load_super_from_disk_from_disk("require_bitmap_is_loaded: bitmap is not loaded");
+        err_exit("require_bitmap_is_loaded: bitmap is not loaded");
     }
 }
 
@@ -75,9 +75,9 @@ void clear_bitmap() {
 void alloc_bitmap() {
     if (bmp.arr == NULL) {
         bmp.arr = (uint8_t*)malloc(BMP_SZ);
+        bmp.is_loaded = true;
         if (!bmp.arr) {
-            load_super_from_disk_from_disk(
-                "alloc_bitmap: failed to allocate memory for bitmap array");
+            err_exit("alloc_bitmap: failed to allocate memory for bitmap array");
         }
     }
     logMsg(WARN_LOG, "alloc_bitmap: bitmap already allocated");

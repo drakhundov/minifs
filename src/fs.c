@@ -16,13 +16,12 @@
 
 void mkfs(const char* disk_img_fn) {
     if (!disk_img_fn) {
-        load_super_from_disk_from_disk(
-            "mkfs: `disk_img_fn` should contain the path to the disk image.");
+        err_exit("mkfs: `disk_img_fn` should contain the path to the disk image.");
     }
     logMsg(INFO_LOG, "mkfs: Opening disk file. path=%s.", disk_img_fn);
     size_t disk_size = (size_t)BLOCK_SIZE * (size_t)NUM_BLOCKS;
     if (create_disk_fs(disk_img_fn, disk_size) != 0) {
-        load_super_from_disk_from_disk("mkfs: failed to create disk image");
+        err_exit("mkfs: failed to create disk image");
     }
     logMsg(INFO_LOG, "mkfs: zeroing disk");
     uint8_t zeros[1024] = {0};
@@ -56,7 +55,7 @@ void mkfs(const char* disk_img_fn) {
     logMsg(INFO_LOG, "mkfs: creating root directory");
     int root_ino = alloc_inode();
     if (root_ino < 0) {
-        load_super_from_disk_from_disk("mkfs: failed to allocate root inode");
+        err_exit("mkfs: failed to allocate root inode");
     }
     Inode root = {0};
     inode_set_valid(&root);
@@ -64,7 +63,7 @@ void mkfs(const char* disk_img_fn) {
     root.size = 0;
     int blk = alloc_block();
     if (blk < 0) {
-        load_super_from_disk_from_disk("mkfs: failed to allocate root data block");
+        err_exit("mkfs: failed to allocate root data block");
     }
     root.data_blocks[0] = blk;
     write_inode(root_ino, root);

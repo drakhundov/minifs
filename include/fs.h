@@ -1,7 +1,7 @@
 #pragma once
 
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #include "on-disk/dirent.h"
 

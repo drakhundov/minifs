@@ -34,7 +34,7 @@ int load_super_from_disk() {
 void flush_super_to_disk() {
     require_disk_is_mounted();
     if (!is_loaded) {
-        load_super_from_disk_from_disk("flush_super_to_disk: super not loaded");
+        err_exit("flush_super_to_disk: super not loaded");
     }
     if (!is_dirty) {
         return;
@@ -46,10 +46,10 @@ void flush_super_to_disk() {
 void set_super(const SuperConfig* cfg) {
     require_disk_is_mounted();
     if (!cfg) {
-        load_super_from_disk_from_disk("set_super: config is null");
+        err_exit("set_super: config is null");
     }
     if (validate_super(cfg) != 0) {
-        load_super_from_disk_from_disk("set_super: invalid super config");
+        err_exit("set_super: invalid super config");
     }
 
     memset(&sb, 0, sizeof sb);

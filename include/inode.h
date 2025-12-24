@@ -15,21 +15,21 @@
 void init_inode_table();
 int alloc_inode();
 void free_inode(int inode_no);
-int read_inode(int inode_no, Inode* inode);
-int write_inode(int inode_no, const Inode inode);
+size_t read_inode(int inode_no, Inode* inode);
+size_t write_inode(int inode_no, Inode inode);
 
-static inline bool inode_is_valid(Inode inode) {
+static bool inode_is_valid(Inode inode) {
     return inode.f & IS_VALID_FLAG;
 }
-static inline bool inode_is_dir(Inode inode) {
+static bool inode_is_dir(Inode inode) {
     return inode.f & IS_DIR_FLAG;
 }
-static inline void inode_set_valid(Inode* inode) {
+static void inode_set_valid(Inode* inode) {
     inode->f |= IS_VALID_FLAG;
 }
-static inline void inode_set_invalid(Inode* inode) {
+static void inode_set_invalid(Inode* inode) {
     inode->f &= ~IS_VALID_FLAG;
 }
-static inline void inode_set_dir(Inode* inode) {
+static void inode_set_dir(Inode* inode) {
     inode->f |= IS_DIR_FLAG;
 }
